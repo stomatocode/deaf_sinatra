@@ -1,9 +1,16 @@
 get '/' do
   @grandma = params[:grandma]
   # Look in app/views/index.erb
-  erb :index
+  erb :home
 end
 
 post '/grandma' do
-  "Implement the /grandma route yourself.<br>Params: <code>#{params.inspect}</code>"
+
+  if params[:user_input] == (params[:user_input]).upcase
+    @grandma = "NOT SINCE 1971!"
+  else
+    @grandma = "SPEAK UP YA LITTLE SHIT! I CAN'T HEAR YOU!"
+  end
+
+  redirect "/?grandma=#{@grandma}"
 end
